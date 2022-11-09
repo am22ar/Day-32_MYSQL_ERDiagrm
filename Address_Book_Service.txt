@@ -1,0 +1,33 @@
+create database addressBookService;
+show databases;
+use addressBookService;
+
+create table addressBook (firstname varchar(20),lastname varchar(20),address varchar(20),
+city varchar(20),state varchar(20),zip varchar(6),phone varchar(12),email varchar(20));
+desc addressBook;
+
+insert into addressBook (firstname,lastname,address,city,state,zip,phone,email) values ('Amar','Patil','Saiful','Solapur',
+'Maharashtra','413004','8421241594','amar@gmail.com' ),('Aniket','Pawar','Villa','Solapur','Maharashtra','413005','942321502','aniketg@gmail.com')
+,('Virat','Kohli','FC ','Mumbai','Maharashtra','412209','8220301501','virat@gmail.com');
+select *from addressBook;
+
+update addressBook set phone = '9172322399' where firstname = 'Amar';
+
+delete from addressBook where firstname = 'Aniket';
+
+select *from addressBook where city = 'Solapur';
+
+select count(*) from addressBook where state = 'Maharashtra';
+
+select *from addressBook where state = 'Maharashtra' order by firstname;
+
+alter table addressBook add column bookname varchar(20), add column booktype varchar(20);
+update addressBook set bookname='Book1' where firstname = 'Amar';
+update addressBook set bookname='Book2' where firstname = 'Aniket';
+update addressBook set bookname='Book3' where firstname = 'Virat';
+update addressBook set booktype='Family' where firstname = 'Amar';
+update addressBook set booktype='Friends' where firstname = 'Aniket';
+update addressBook set booktype='Profession' where firstname = 'Virat';
+
+
+select booktype, count(*) from addressBook group by booktype;
